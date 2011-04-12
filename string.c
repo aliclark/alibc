@@ -170,7 +170,7 @@ char* strchr (const char* cs, int c)
 
         if (tmp == c)
         {
-            return cs + i;
+            return (char*) cs + i;
         }
 
         if (tmp == '\0')
@@ -236,8 +236,8 @@ size_t strxfrm(char* s, const char* ct, size_t n);
 
 void* memcpy (void* __restrict s, const void* __restrict ct, size_t n)
 {
-    char*  sc  = s;
-    char*  ctc = ct;
+    char* sc = s;
+    const char* ctc = ct;
     size_t i   = 0;
 
     assert((n == 0) || (s  != NULL));
@@ -272,8 +272,8 @@ int memcmp (const void* cs, const void* ct, size_t n);
 
 void* memchr (const void* cs, int c, size_t n)
 {
-    char*  csc = cs;
-    size_t i   = 0;
+    const char* csc = cs;
+    size_t i = 0;
 
     assert((n == 0) || (cs != NULL));
 
@@ -281,7 +281,7 @@ void* memchr (const void* cs, int c, size_t n)
     {
         if (csc[i] == c)
         {
-            return csc + i;
+            return (void*) csc + i;
         }
     }
 
