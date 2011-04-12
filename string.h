@@ -1,5 +1,5 @@
 
-#define __restrict restrict
+#define __restrict /*restrict*/
 
 typedef int __char_t;
 
