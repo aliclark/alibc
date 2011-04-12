@@ -254,14 +254,16 @@ void* memcpy (void* __restrict s, const void* __restrict ct, size_t n)
 /* todo: fixme */
 void* memmove (void* s, const void* ct, size_t n)
 {
-    char*  sc = s;
-    size_t i  = 0;
+    char* sc = s;
+    const char* ctc = ct;
+    size_t i   = 0;
 
-    assert((n == 0) || (s != NULL));
+    assert((n == 0) || (s  != NULL));
+    assert((n == 0) || (ct != NULL));
 
     for (; i != n; ++i)
     {
-        sc[i] = c;
+        sc[i] = ctc[i];
     }
 
     return s;
