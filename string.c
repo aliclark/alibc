@@ -276,9 +276,11 @@ void* memmove (void* s, const void* ct, size_t n)
     return s;
 }
 
-int memcmp (const void* cs, const void* ct, size_t n);
+int memcmp (const void* cs, const void* ct, size_t n)
 {
     __char_t sc;
+    const char* csc = cs;
+    const char* ctc = ct;
     int diff;
     size_t i = 0;
 
@@ -287,8 +289,8 @@ int memcmp (const void* cs, const void* ct, size_t n);
 
     for (; i != n; ++i)
     {
-        sc = cs[i];
-        diff = sc - ct[i];
+        sc = csc[i];
+        diff = sc - ctc[i];
 
         if (diff < 0)
         {
