@@ -269,8 +269,32 @@ void* memmove (void* s, const void* ct, size_t n)
     return s;
 }
 
-/* Compares at most (the first) n characters of cs and ct, returning negative value if cs&lt;ct, zero if cs==ct, positive value if cs&gt;ct. */
 int memcmp (const void* cs, const void* ct, size_t n);
+{
+    __char_t sc;
+    int diff;
+    size_t i = 0;
+
+    assert((n == 0) || (cs != NULL));
+    assert((n == 0) || (ct != NULL));
+
+    for (; i != n; ++i)
+    {
+        sc = cs[i];
+        diff = sc - ct[i];
+
+        if (diff < 0)
+        {
+            return -1;
+        }
+        if (diff > 0)
+        {
+            return 1;
+        }
+    }
+
+    return 0;
+}
 
 void* memchr (const void* cs, int c, size_t n)
 {
