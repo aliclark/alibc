@@ -1,6 +1,6 @@
 
 #include <assert.h>
-#include <string.h>
+#include "string.h"
 
 char* strncpy (char* __restrict s, const char* __restrict ct, size_t n)
 {
