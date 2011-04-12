@@ -154,8 +154,10 @@ int strncmp (const char* cs, const char* ct, size_t n)
     return 0;
 }
 
-/* Compares cs with ct according to locale, returning negative value if cs&lt;ct, zero if cs==ct, positive value if cs&gt;ct. */
-int strcoll (const char* cs, const char* ct);
+int strcoll (const char* cs, const char* ct)
+{
+    return strcmp(cs, ct);
+}
 
 char* strchr (const char* cs, int c)
 {
