@@ -129,20 +129,24 @@ char* strchr(const char* cs, int c)
 
 char* strrchr(const char* cs, int c)
 {
-    char* prev = strchr(cs, c);
+    char* prev;
     char* rv;
 
-    if (prev == NULL)
+    assert(cs != NULL);
+
+    prev = strchr(cs, c);
+
+    if ((prev == NULL) || (c == '\0'))
     {
-        return NULL;
+        return prev;
     }
 
     do
     {
         rv = prev;
-        prev = strchr(prev, c);
+        prev = strchr(prev + 1, c);
     }
-    while (prev);
+    while (prev != NULL);
 
     return rv;
 }
