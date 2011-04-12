@@ -246,9 +246,23 @@ void* memcpy (void* __restrict s, const void* __restrict ct, size_t n)
     return s;
 }
 
-void* memmove(void* s, const void* ct, size_t n);
-/* Copies n characters from ct to s and returns s.  <strong>s will not be corrupted if objects overlap.</strong> */
-int memcmp(const void* cs, const void* ct, <a href="#string.size_t">size_t</a> n);
+/* todo: fixme */
+void* memmove (void* s, const void* ct, size_t n);
+{
+    char*  sc = s;
+    size_t i  = 0;
+
+    assert((n == 0) || (s != NULL));
+
+    for (; i != n; ++i)
+    {
+        sc[i] = c;
+    }
+
+    return s;
+}
+
+int memcmp (const void* cs, const void* ct, <a href="#string.size_t">size_t</a> n);
 /* Compares at most (the first) n characters of cs and ct, returning negative value if cs&lt;ct, zero if cs==ct, positive value if cs&gt;ct. */
 
 void* memchr (const void* cs, int c, size_t n)
