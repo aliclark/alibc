@@ -8,7 +8,6 @@ typedef int __bool_t;
 #define __true  1
 
 #define NULL 0
-/* Null pointer constant. */
 
 typedef unsigned int size_t;
 /* Type for objects declared to store result of sizeof operator. */
