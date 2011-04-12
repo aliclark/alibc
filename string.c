@@ -209,10 +209,15 @@ char* strrchr (const char* cs, int c)
 }
 
 /* Returns length of prefix of cs which consists of characters which are in ct. */
-size_t strspn(const char* cs, const char* ct);
+/*
+ * Ideally we would create a table to look up safeness of each char in cs.
+ * The problem is char may be a signed type,
+ * in which case we need to convert it to unsigned value without losing data.
+ */
+size_t strspn (const char* cs, const char* ct);
 
 /* Returns length of prefix of cs which consists of characters which are not in ct. */
-size_t strcspn(const char* cs, const char* ct);
+size_t strcspn (const char* cs, const char* ct);
 
 /* Returns pointer to first occurrence in cs of any character of ct, or <a href="#string.NULL">NULL</a> if none is found. */
 char* strpbrk (const char* cs, const char* ct);
