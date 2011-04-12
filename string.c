@@ -154,8 +154,8 @@ int strncmp (const char* cs, const char* ct, size_t n)
     return 0;
 }
 
-int strcoll (const char* cs, const char* ct);
 /* Compares cs with ct according to locale, returning negative value if cs&lt;ct, zero if cs==ct, positive value if cs&gt;ct. */
+int strcoll (const char* cs, const char* ct);
 
 char* strchr (const char* cs, int c)
 {
@@ -206,14 +206,17 @@ char* strrchr (const char* cs, int c)
     return rv;
 }
 
-<a href="#string.size_t">size_t</a> strspn(const char* cs, const char* ct);
 /* Returns length of prefix of cs which consists of characters which are in ct. */
-<a href="#string.size_t">size_t</a> strcspn(const char* cs, const char* ct);
+size_t strspn(const char* cs, const char* ct);
+
 /* Returns length of prefix of cs which consists of characters which are not in ct. */
-char* strpbrk (const char* cs, const char* ct);
+size_t strcspn(const char* cs, const char* ct);
+
 /* Returns pointer to first occurrence in cs of any character of ct, or <a href="#string.NULL">NULL</a> if none is found. */
-char* strstr (const char* cs, const char* ct);
+char* strpbrk (const char* cs, const char* ct);
+
 /* Returns pointer to first occurrence of ct within cs, or <a href="#string.NULL">NULL</a> if none is found. */
+char* strstr (const char* cs, const char* ct);
 
 size_t strlen (const char* cs)
 {
@@ -222,12 +225,14 @@ size_t strlen (const char* cs)
     return strchr(cs, '\0');
 }
 
-// <a name="strerror">char* strerror(int n);</a>
 /* Returns pointer to implementation-defined message string corresponding with error n. */
-char* strtok (char* s, const char* t);
+char* strerror(int n);
+
 /* Searches s for next token delimited by any character from ct.  Non-<a href="#string.NULL">NULL</a> s indicates the first call of a sequence.  If a token is found, it is NUL-terminated and returned, otherwise <a href="#string.NULL">NULL</a> is returned.  ct need not be identical for each call in a sequence. */
-<a href="#string.size_t">size_t</a> strxfrm(char* s, const char* ct, <a href="#string.size_t">size_t</a> n);
+char* strtok (char* s, const char* t);
+
 /* Stores in s no more than n characters (including terminating NUL) of a string produced from ct according to a locale-specific transformation.  Returns length of entire transformed string. */
+size_t strxfrm(char* s, const char* ct, size_t n);
 
 void* memcpy (void* __restrict s, const void* __restrict ct, size_t n)
 {
@@ -247,7 +252,7 @@ void* memcpy (void* __restrict s, const void* __restrict ct, size_t n)
 }
 
 /* todo: fixme */
-void* memmove (void* s, const void* ct, size_t n);
+void* memmove (void* s, const void* ct, size_t n)
 {
     char*  sc = s;
     size_t i  = 0;
@@ -262,8 +267,8 @@ void* memmove (void* s, const void* ct, size_t n);
     return s;
 }
 
-int memcmp (const void* cs, const void* ct, <a href="#string.size_t">size_t</a> n);
 /* Compares at most (the first) n characters of cs and ct, returning negative value if cs&lt;ct, zero if cs==ct, positive value if cs&gt;ct. */
+int memcmp (const void* cs, const void* ct, size_t n);
 
 void* memchr (const void* cs, int c, size_t n)
 {
