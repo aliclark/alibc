@@ -2,7 +2,7 @@
 #include <assert.h>
 #include <string.h>
 
-char* strncpy(char* s, const char* ct, size_t n)
+char* strncpy (char* __restrict s, const char* __restrict ct, size_t n)
 {
     size_t i = 0;
     char* sp = s;
@@ -36,7 +36,7 @@ ret:
     return s;
 }
 
-char* strcpy(char* s, const char* ct)
+char* strcpy (char* __restrict s, const char* __restrict ct)
 {
     char* sp = s;
     char tmp;
@@ -54,7 +54,7 @@ char* strcpy(char* s, const char* ct)
     return s;
 }
 
-char* strncat(char* s, const char* ct, size_t n)
+char* strncat (char* __restrict s, const char* __restrict ct, size_t n)
 {
     size_t i = 0;
     char* sp;
@@ -85,7 +85,7 @@ char* strncat(char* s, const char* ct, size_t n)
     return s;
 }
 
-char* strcat(char* s, const char* ct)
+char* strcat (char* __restrict s, const char* __restrict ct)
 {
     assert(s  != NULL);
     assert(ct != NULL);
@@ -174,7 +174,7 @@ char* strtok(char* s, const char* t);
 <a href="#string.size_t">size_t</a> strxfrm(char* s, const char* ct, <a href="#string.size_t">size_t</a> n);
 /* Stores in s no more than n characters (including terminating NUL) of a string produced from ct according to a locale-specific transformation.  Returns length of entire transformed string. */
 
-void* memcpy(void* s, const void* ct, size_t n)
+void* memcpy (void* __restrict s, const void* __restrict ct, size_t n)
 {
     char*  sc  = s;
     char*  ctc = ct;
