@@ -162,16 +162,9 @@ char* strstr(const char* cs, const char* ct);
 
 size_t strlen(const char* cs)
 {
-    size_t i = 0;
-
     assert(cs != NULL);
 
-    while (cs[i] != '\0')
-    {
-        ++i;
-    }
-
-    return i;
+    return strchr(cs, '\0');
 }
 
 // <a name="strerror">char* strerror(int n);</a>
