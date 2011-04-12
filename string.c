@@ -233,13 +233,13 @@ size_t strlen (const char* cs)
 }
 
 /* Returns pointer to implementation-defined message string corresponding with error n. */
-char* strerror(int n);
+char* strerror (int n);
 
 /* Searches s for next token delimited by any character from ct.  Non-<a href="#string.NULL">NULL</a> s indicates the first call of a sequence.  If a token is found, it is NUL-terminated and returned, otherwise <a href="#string.NULL">NULL</a> is returned.  ct need not be identical for each call in a sequence. */
 char* strtok (char* s, const char* t);
 
 /* Stores in s no more than n characters (including terminating NUL) of a string produced from ct according to a locale-specific transformation.  Returns length of entire transformed string. */
-size_t strxfrm(char* s, const char* ct, size_t n);
+size_t strxfrm (char* s, const char* ct, size_t n);
 
 void* memcpy (void* __restrict s, const void* __restrict ct, size_t n)
 {
