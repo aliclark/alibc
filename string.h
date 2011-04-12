@@ -1,4 +1,12 @@
 
+#define __restrict restrict
+
+typedef int __char_t;
+
+typedef int __bool_t;
+#define __false 0
+#define __true  1
+
 #define NULL 0
 /* Null pointer constant. */
 
