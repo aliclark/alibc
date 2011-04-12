@@ -1,4 +1,5 @@
 
+#include <assert.h>
 #include <string.h>
 
 char* strncpy(char* s, const char* ct, size_t n)
@@ -6,6 +7,9 @@ char* strncpy(char* s, const char* ct, size_t n)
     size_t i = 0;
     char* sp = s;
     char tmp;
+
+    assert((n == 0) || (s  != NULL));
+    assert((n == 0) || (ct != NULL));
 
     while (1)
     {
@@ -37,6 +41,9 @@ char* strcpy(char* s, const char* ct)
     char* sp = s;
     char tmp;
 
+    assert(s  != NULL);
+    assert(ct != NULL);
+
     do
     {
         tmp = *ct++;
@@ -50,8 +57,13 @@ char* strcpy(char* s, const char* ct)
 char* strncat(char* s, const char* ct, size_t n)
 {
     size_t i = 0;
-    char* sp = s + strlen(s);
+    char* sp;
     char tmp;
+
+    assert((n == 0) || (s  != NULL));
+    assert((n == 0) || (ct != NULL));
+
+    sp = s + strlen(s);
 
     while (1)
     {
@@ -75,6 +87,9 @@ char* strncat(char* s, const char* ct, size_t n)
 
 char* strcat(char* s, const char* ct)
 {
+    assert(s  != NULL);
+    assert(ct != NULL);
+
     (void) strcpy(s + strlen(s), ct);
 
     return s;
@@ -91,6 +106,8 @@ char* strchr(const char* cs, int c)
 {
     size_t i = 0;
     char tmp;
+
+    assert(cs != NULL);
 
     while (1)
     {
@@ -153,6 +170,9 @@ void* memcpy(void* s, const void* ct, size_t n)
     char*  ctc = ct;
     size_t i   = 0;
 
+    assert((n == 0) || (s  != NULL));
+    assert((n == 0) || (ct != NULL));
+
     for (; i != n; ++i)
     {
         sc[i] = ctc[i];
@@ -171,6 +191,8 @@ void* memchr(const void* cs, int c, size_t n)
     char*  csc = cs;
     size_t i   = 0;
 
+    assert((n == 0) || (cs != NULL));
+
     for (; i != n; ++i)
     {
         if (csc[i] == c)
@@ -186,6 +208,8 @@ void* memset(void* s, int c, size_t n)
 {
     char*  sc = s;
     size_t i  = 0;
+
+    assert((n == 0) || (s != NULL));
 
     for (; i != n; ++i)
     {
