@@ -243,8 +243,8 @@ size_t strxfrm (char* s, const char* ct, size_t n);
 
 void* memcpy (void* __restrict s, const void* __restrict ct, size_t n)
 {
-    char* sc = s;
-    const char* ctc = ct;
+    char* sc = (char*) s;
+    const char* ctc = (const char*) ct;
     size_t i   = 0;
 
     assert((n == 0) || (s  != NULL));
@@ -261,8 +261,8 @@ void* memcpy (void* __restrict s, const void* __restrict ct, size_t n)
 /* todo: fixme */
 void* memmove (void* s, const void* ct, size_t n)
 {
-    char* sc = s;
-    const char* ctc = ct;
+    char* sc = (char*) s;
+    const char* ctc = (const char*) ct;
     size_t i   = 0;
 
     assert((n == 0) || (s  != NULL));
@@ -279,8 +279,8 @@ void* memmove (void* s, const void* ct, size_t n)
 int memcmp (const void* cs, const void* ct, size_t n)
 {
     __char_t sc;
-    const char* csc = cs;
-    const char* ctc = ct;
+    const char* csc = (const char*) cs;
+    const char* ctc = (const char*) ct;
     int diff;
     size_t i = 0;
 
@@ -307,7 +307,7 @@ int memcmp (const void* cs, const void* ct, size_t n)
 
 void* memchr (const void* cs, int c, size_t n)
 {
-    const char* csc = cs;
+    const char* csc = (const char*) cs;
     size_t i = 0;
 
     assert((n == 0) || (cs != NULL));
@@ -316,7 +316,7 @@ void* memchr (const void* cs, int c, size_t n)
     {
         if (csc[i] == c)
         {
-            return (void*) csc + i;
+            return (void*) (csc + i);
         }
     }
 
@@ -325,7 +325,7 @@ void* memchr (const void* cs, int c, size_t n)
 
 void* memset (void* s, int c, size_t n)
 {
-    char*  sc = s;
+    char*  sc = (char*) s;
     size_t i  = 0;
 
     assert((n == 0) || (s != NULL));
