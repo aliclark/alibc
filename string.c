@@ -11,7 +11,7 @@ char* strncpy (char* __restrict s, const char* __restrict ct, size_t n)
     assert((n == 0) || (s  != NULL));
     assert((n == 0) || (ct != NULL));
 
-    while (1)
+    while (__true)
     {
         if (i == n)
         {
@@ -65,7 +65,7 @@ char* strncat (char* __restrict s, const char* __restrict ct, size_t n)
 
     sp = s + strlen(s);
 
-    while (1)
+    while (__true)
     {
         if (i == n)
         {
@@ -109,7 +109,7 @@ char* strchr(const char* cs, int c)
 
     assert(cs != NULL);
 
-    while (1)
+    while (__true)
     {
         tmp = cs[i];
 
