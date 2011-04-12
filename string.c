@@ -222,7 +222,7 @@ size_t strlen (const char* cs)
 {
     assert(cs != NULL);
 
-    return strchr(cs, '\0');
+    return strchr(cs, '\0') - cs;
 }
 
 /* Returns pointer to implementation-defined message string corresponding with error n. */
