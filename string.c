@@ -155,8 +155,21 @@ char* strpbrk(const char* cs, const char* ct);
 /* Returns pointer to first occurrence in cs of any character of ct, or <a href="#string.NULL">NULL</a> if none is found. */
 char* strstr(const char* cs, const char* ct);
 /* Returns pointer to first occurrence of ct within cs, or <a href="#string.NULL">NULL</a> if none is found. */
-<a href="#string.size_t">size_t</a> strlen(const char* cs);
-/* Returns length of cs. */
+
+size_t strlen(const char* cs)
+{
+    size_t i = 0;
+
+    assert(cs != NULL);
+
+    while (cs[i] != '\0')
+    {
+        ++i;
+    }
+
+    return i;
+}
+
 // <a name="strerror">char* strerror(int n);</a>
 /* Returns pointer to implementation-defined message string corresponding with error n. */
 char* strtok(char* s, const char* t);
