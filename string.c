@@ -95,11 +95,66 @@ char* strcat (char* __restrict s, const char* __restrict ct)
     return s;
 }
 
-int strcmp(const char* cs, const char* ct);
-/* Compares cs with ct, returning negative value if cs&lt;ct, zero if cs==ct, positive value if cs&gt;ct. */
-int strncmp(const char* cs, const char* ct, <a href="#string.size_t">size_t</a> n);
-/* Compares at most (the first) n characters of cs and ct, returning negative value if cs&lt;ct, zero if cs==ct, positive value if cs&gt;ct. */
-int strcoll(const char* cs, const char* ct);
+int strcmp (const char* cs, const char* ct)
+{
+    __char_t sc;
+    int diff;
+
+    assert(cs != NULL);
+    assert(ct != NULL);
+
+    do
+    {
+        sc = *cs++;
+        diff = sc - *ct++;
+
+        if (diff < 0)
+        {
+            return -1;
+        }
+        if (diff > 0)
+        {
+            return 1;
+        }
+    }
+    while (sc != '\0');
+
+    return 0;
+}
+
+int strncmp (const char* cs, const char* ct, size_t n)
+{
+    __char_t sc;
+    int diff;
+    size_t i = 0;
+
+    assert((n == 0) || (cs != NULL));
+    assert((n == 0) || (ct != NULL));
+
+    for (; i != n; ++i)
+    {
+        sc = cs[i];
+        diff = sc - ct[i];
+
+        if (diff < 0)
+        {
+            return -1;
+        }
+        if (diff > 0)
+        {
+            return 1;
+        }
+
+        if (sc == '\0')
+        {
+            break;
+        }
+    }
+
+    return 0;
+}
+
+int strcoll (const char* cs, const char* ct);
 /* Compares cs with ct according to locale, returning negative value if cs&lt;ct, zero if cs==ct, positive value if cs&gt;ct. */
 
 char* strchr(const char* cs, int c)
