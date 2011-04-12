@@ -6,7 +6,7 @@ char* strncpy (char* __restrict s, const char* __restrict ct, size_t n)
 {
     size_t i = 0;
     char* sp = s;
-    char tmp;
+    __char_t tmp;
 
     assert((n == 0) || (s  != NULL));
     assert((n == 0) || (ct != NULL));
@@ -39,7 +39,7 @@ ret:
 char* strcpy (char* __restrict s, const char* __restrict ct)
 {
     char* sp = s;
-    char tmp;
+    __char_t tmp;
 
     assert(s  != NULL);
     assert(ct != NULL);
@@ -58,7 +58,7 @@ char* strncat (char* __restrict s, const char* __restrict ct, size_t n)
 {
     size_t i = 0;
     char* sp;
-    char tmp;
+    __char_t tmp;
 
     assert((n == 0) || (s  != NULL));
     assert((n == 0) || (ct != NULL));
@@ -105,7 +105,7 @@ int strcoll(const char* cs, const char* ct);
 char* strchr(const char* cs, int c)
 {
     size_t i = 0;
-    char tmp;
+    __char_t tmp;
 
     assert(cs != NULL);
 
