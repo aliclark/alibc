@@ -222,8 +222,30 @@ size_t strcspn (const char* cs, const char* ct);
 /* Returns pointer to first occurrence in cs of any character of ct, or <a href="#string.NULL">NULL</a> if none is found. */
 char* strpbrk (const char* cs, const char* ct);
 
-/* Returns pointer to first occurrence of ct within cs, or <a href="#string.NULL">NULL</a> if none is found. */
-char* strstr (const char* cs, const char* ct);
+char* strstr (const char* cs, const char* ct)
+{
+    size_t len;
+
+    assert(cs != NULL);
+    assert(ct != NULL);
+
+    len = strlen(ct);
+
+    if (len == 0)
+    {
+        return (char*) cs;
+    }
+
+    for (; *cs != '\0'; ++cs)
+    {
+        if (strncmp(cs, ct, len) == 0)
+        {
+            return (char*) cs;
+        }
+    }
+
+    return NULL;
+}
 
 size_t strlen (const char* cs)
 {
