@@ -1,4 +1,6 @@
 
+#define __UNUSED(x) (void) n
+
 #define __restrict /*restrict*/
 
 typedef int __char_t;

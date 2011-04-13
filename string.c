@@ -254,8 +254,13 @@ size_t strlen (const char* cs)
     return strchr(cs, '\0') - cs;
 }
 
-/* Returns pointer to implementation-defined message string corresponding with error n. */
-char* strerror (int n);
+static const char* __strerror_message = "I'm sorry about your problem.";
+
+char* strerror (int n)
+{
+    __UNUSED(n);
+    return (char*) __strerror_message;
+}
 
 /* Searches s for next token delimited by any character from ct.  Non-<a href="#string.NULL">NULL</a> s indicates the first call of a sequence.  If a token is found, it is NUL-terminated and returned, otherwise <a href="#string.NULL">NULL</a> is returned.  ct need not be identical for each call in a sequence. */
 char* strtok (char* s, const char* t);
