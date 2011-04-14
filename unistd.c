@@ -41,9 +41,8 @@ int getopt (int argc, char* const *argv, const char* optstring)
             return -1;
         }
 
-        if ((curg[1] == '-') && (curg[2] == '\0'))
+        if (strcmp(curg, "--") == 0)
         {
-            /* -- */
             ++optind;
             return -1;
         }
