@@ -344,7 +344,44 @@ ret:
     return s;
 }
 
-char    *strpbrk(const char *, const char *);
+/* very similar to strspn */
+char *strpbrk (const char* s1, const char* s2)
+{
+    __bool_t table[CHAR_MAX] = { __false };
+    size_t i = 0;
+    char c, b;
+
+    assert(s1 != NULL);
+    assert(s2 != NULL);
+
+    while (__true)
+    {
+        c = *s2++;
+
+        if (c == '\0')
+        {
+            break;
+        }
+        table[(int) c] = __true;
+    }
+
+    while (__true)
+    {
+        b = s1[i];
+
+        if (table[(int) b] == __true)
+        {
+            return (char*) s1 + i;
+        }
+
+        if (b == '\0')
+        {
+            return NULL;
+        }
+
+        ++i;
+    }
+}
 
 char* strrchr (const char* cs, int c)
 {
