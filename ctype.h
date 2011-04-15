@@ -1,6 +1,10 @@
 
-#ifndef __CTYPE
-#define __CTYPE
+#ifndef __ALIBC_CTYPE_H
+#define __ALIBC_CTYPE_H
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 int   isalnum(int);
 int   isalpha(int);
@@ -40,6 +44,10 @@ int   toupper_l(int, locale_t);
 #define _tolower(i) ((int) (((int) (i)) - 32))
 int   isascii(int);
 int   toascii(int);
+#endif
+
+#ifdef __cplusplus
+}
 #endif
 
 #endif
