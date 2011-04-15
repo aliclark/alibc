@@ -9,9 +9,9 @@ char *optarg = NULL;
 int opterr = 0, optind = 1, optopt = 0;
 
 /* index into the arg where we left off */
-static size_t __optwithin       = 0;
-static char*  __optfailillegal  = "%s: illegal option -- %c\n";
-static char*  __optfailargument = "%s: option requires an argument -- %c\n";
+static size_t __optwithin = 0;
+static const char* __optfailillegal  = "%s: illegal option -- %c\n";
+static const char* __optfailargument = "%s: option requires an argument -- %c\n";
 
 /*
  * huh?:
