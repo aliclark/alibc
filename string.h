@@ -1,10 +1,14 @@
 
-#ifndef __STRING
-#define __STRING
+#ifndef __ALIBC_STRING_H
+#define __ALIBC_STRING_H
 
 #include <stddef.h>
 
 #define __restrict /*restrict*/
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 void    *memchr(const void *, int, size_t);
 int      memcmp(const void *, const void *, size_t);
@@ -47,6 +51,10 @@ size_t   strxfrm_l(char *__restrict, const char *__restrict,
 
 #ifdef __XSI
 void    *memccpy(void *__restrict, const void *__restrict, int, size_t);
+#endif
+
+#ifdef __cplusplus
+}
 #endif
 
 #endif

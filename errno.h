@@ -1,6 +1,6 @@
 
-#ifndef __ERRNO
-#define __ERRNO
+#ifndef __ALIBC_ERRNO_H
+#define __ALIBC_ERRNO_H
 
 #define EDOM   1
 #define ERANGE 2
