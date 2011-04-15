@@ -18,7 +18,33 @@ typedef int __bool_t;
 #define __true  1
 #endif
 
-static const char* __strerror_message = "I'm sorry about your problem.";
+static size_t __str_spn (const char *s1, const char *s2, __bool_t chk)
+{
+    __bool_t table[CHAR_MAX] = { __false };
+    size_t i = 0;
+    char c;
+
+    assert(s1 != NULL);
+    assert(s2 != NULL);
+
+    while (__true)
+    {
+        c = *s2++;
+
+        if (c == '\0')
+        {
+            break;
+        }
+        table[(int) c] = __true;
+    }
+
+    while ((table[(int) s1[i]] == chk) && (s1[i] != '\0'))
+    {
+        ++i;
+    }
+
+    return i;
+}
 
 void* memchr (const void* cs, int c, size_t n)
 {
@@ -202,12 +228,16 @@ char* strcpy (char* __restrict s, const char* __restrict ct)
     return s;
 }
 
-size_t   strcspn(const char *, const char *);
+size_t strcspn (const char *s1, const char *s2)
+{
+    return __str_spn(s1, s2, __false);
+}
 
 char* strerror (int n)
 {
+    static const char* strerror_message = "I'm sorry about your problem.";
     __UNUSED(n);
-    return (char*) __strerror_message;
+    return (char*) strerror_message;
 }
 
 size_t strlen (const char* cs)
@@ -340,7 +370,10 @@ char* strrchr (const char* cs, int c)
     return rv;
 }
 
-size_t   strspn(const char *, const char *);
+size_t strspn (const char* s1, const char* s2)
+{
+    return __str_spn(s1, s2, __true);
+}
 
 char* strstr (const char* cs, const char* ct)
 {
