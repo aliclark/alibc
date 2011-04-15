@@ -1,37 +1,52 @@
 
-#define __UNUSED(x) (void) n
+#ifndef __STRING
+#define __STRING
+
+#include <stddef.h>
 
 #define __restrict /*restrict*/
 
-typedef int __char_t;
+void    *memchr(const void *, int, size_t);
+int      memcmp(const void *, const void *, size_t);
+void    *memcpy(void *__restrict, const void *__restrict, size_t);
+void    *memmove(void *, const void *, size_t);
+void    *memset(void *, int, size_t);
+char    *strcat(char *__restrict, const char *__restrict);
+char    *strchr(const char *, int);
+int      strcmp(const char *, const char *);
+int      strcoll(const char *, const char *);
+char    *strcpy(char *__restrict, const char *__restrict);
+size_t   strcspn(const char *, const char *);
+char    *strerror(int);
+size_t   strlen(const char *);
+char    *strncat(char *__restrict, const char *__restrict, size_t);
+int      strncmp(const char *, const char *, size_t);
+char    *strncpy(char *__restrict, const char *__restrict, size_t);
+char    *strpbrk(const char *, const char *);
+char    *strrchr(const char *, int);
+size_t   strspn(const char *, const char *);
+char    *strstr(const char *, const char *);
+char    *strtok(char *__restrict, const char *__restrict);
+size_t   strxfrm(char *__restrict, const char *__restrict, size_t);
 
-typedef int __bool_t;
-#define __false 0
-#define __true  1
+#ifdef __CX
+#include <locale.h>
+char    *stpcpy(char *__restrict, const char *__restrict);
+char    *stpncpy(char *__restrict, const char *__restrict, size_t);
+int      strcoll_l(const char *, const char *, locale_t);
+char    *strdup(const char *);
+char    *strerror_l(int, locale_t);
+int      strerror_r(int, char *, size_t);
+char    *strndup(const char *, size_t);
+size_t   strnlen(const char *, size_t);
+char    *strsignal(int);
+char    *strtok_r(char *__restrict, const char *__restrict, char **__restrict);
+size_t   strxfrm_l(char *__restrict, const char *__restrict,
+                   size_t, locale_t);
+#endif
 
-#define NULL 0
+#ifdef __XSI
+void    *memccpy(void *__restrict, const void *__restrict, int, size_t);
+#endif
 
-typedef unsigned int size_t;
-
-char* strncpy (char* __restrict s, const char* __restrict ct, size_t n);
-char* strcpy (char* __restrict s, const char* __restrict ct);
-char* strncat (char* __restrict s, const char* __restrict ct, size_t n);
-char* strcat (char* __restrict s, const char* __restrict ct);
-int strcmp (const char* cs, const char* ct);
-int strncmp (const char* cs, const char* ct, size_t n);
-int strcoll (const char* cs, const char* ct);
-char* strchr (const char* cs, int c);
-char* strrchr (const char* cs, int c);
-size_t strspn (const char* cs, const char* ct);
-size_t strcspn (const char* cs, const char* ct);
-char* strpbrk (const char* cs, const char* ct);
-char* strstr (const char* cs, const char* ct);
-size_t strlen (const char* cs);
-char* strerror (int n);
-char* strtok (char* s, const char* t);
-size_t strxfrm (char* s, const char* ct, size_t n);
-void* memcpy (void* __restrict s, const void* __restrict ct, size_t n);
-void* memmove (void* s, const void* ct, size_t n);
-int memcmp (const void* cs, const void* ct, size_t n);
-void* memchr (const void* cs, int c, size_t n);
-void* memset (void* s, int c, size_t n);
+#endif

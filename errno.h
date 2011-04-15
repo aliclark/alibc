@@ -1,4 +1,7 @@
 
+#ifndef __ERRNO
+#define __ERRNO
+
 #define EDOM   1
 #define ERANGE 2
 
@@ -18,3 +21,4 @@ extern int errno;
 </ul> */
 
 
+#endif
