@@ -73,7 +73,7 @@ int tolower (int c)
     return isupper(c) ? c - 32 : c;
 }
 
-int toupper (int c);
+int toupper (int c)
 {
     return islower(c) ? c + 32 : c;
 }
