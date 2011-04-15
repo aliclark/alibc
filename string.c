@@ -437,7 +437,49 @@ char* strstr (const char* cs, const char* ct)
     return NULL;
 }
 
-char    *strtok(char *__restrict, const char *__restrict);
+char *strtok (char* __restrict s1, const char* __restrict s2)
+{
+    static char* __restrict strtok_s1 = NULL;
+
+    size_t sub;
+    char* sb;
+    char* tok;
+
+    assert(s2 != NULL);
+
+    if (s1 == NULL)
+    {
+        s1 = strtok_s1;
+
+        if (s1 == NULL)
+        {
+            return NULL;
+        }
+    }
+
+    sub = strspn(s1, s2);
+
+    if (sub == 0)
+    {
+        return NULL;
+    }
+
+    tok = s1 + sub;
+    sb = strpbrk(tok, s2);
+
+    if (sb == NULL)
+    {
+        strtok_s1 = NULL;
+        return tok;
+    }
+    else
+    {
+        *sb = '\0';
+        strtok_s1 = sb + 1;
+        return tok;
+    }
+}
+
 size_t   strxfrm(char *__restrict, const char *__restrict, size_t);
 
 #ifdef __CX
