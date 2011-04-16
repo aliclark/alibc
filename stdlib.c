@@ -1,7 +1,6 @@
 
 #include <string.h>
-
-#include "stdlib.h"
+#include <stdlib.h>
 
 void          _Exit(int);
 void          abort(void);

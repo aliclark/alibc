@@ -1,8 +1,7 @@
 
 #include <assert.h>
 #include <limits.h>
-
-#include "string.h"
+#include <string.h>
 
 #define __UNUSED(x) ((void) n)
 
