@@ -1,4 +1,10 @@
 
-DEPS="ctype.o errno.o stdlib.o string.o unistd.o"
+DEPS="ctype.o stdlib.o string.o unistd.o"
+
+if [ "$CC" = "" ]; then
+  CC=clang
+fi
+
 redo-ifchange $DEPS
-clang -nostdlib -nodefaultlibs -shared -Wl,-soname,libalibc.so.1 -o libalibc.so.1 $DEPS
+
+$CC -nostdlib -nodefaultlibs -shared -Wl,-soname,libalibc.so.1 -o libalibc.so.1 $DEPS
