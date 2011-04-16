@@ -97,8 +97,6 @@ int   toupper_l(int, locale_t);
 #endif
 
 #ifdef __OB_XSI
-#define _toupper(i) ((int) (((int) (i)) + 32))
-#define _tolower(i) ((int) (((int) (i)) - 32))
 int   isascii(int);
 int   toascii(int);
 #endif
