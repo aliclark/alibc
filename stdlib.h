@@ -28,7 +28,6 @@ int           atexit(void (*)(void));
 double        atof(const char *);
 int           atoi(const char *);
 long          atol(const char *);
-long long     atoll(const char *);
 void         *bsearch(const void *, const void *, size_t, size_t,
                       int (*)(const void *, const void *));
 void         *calloc(size_t, size_t);
@@ -39,8 +38,6 @@ char         *getenv(const char *);
 int           getsubopt(char **, char *const *, char **);
 long          labs(long);
 ldiv_t        ldiv(long, long);
-long long     llabs(long long);
-lldiv_t       lldiv(long long, long long);
 void         *malloc(size_t);
 int           mblen(const char *, size_t);
 size_t        mbstowcs(wchar_t *__restrict, const char *__restrict, size_t);
@@ -54,13 +51,19 @@ double        strtod(const char *__restrict, char **__restrict);
 float         strtof(const char *__restrict, char **__restrict);
 long          strtol(const char *__restrict, char **__restrict, int);
 long double   strtold(const char *__restrict, char **__restrict);
-long long     strtoll(const char *__restrict, char **__restrict, int);
 unsigned long strtoul(const char *__restrict, char **__restrict, int);
-unsigned long long
-strtoull(const char *__restrict, char **__restrict, int);
 int           system(const char *);
 size_t        wcstombs(char *__restrict, const wchar_t *__restrict, size_t);
 int           wctomb(char *, wchar_t);
+
+#ifdef LLONG_MAX
+long long     atoll(const char *);
+long long     llabs(long long);
+lldiv_t       lldiv(long long, long long);
+long long     strtoll(const char *__restrict, char **__restrict, int);
+unsigned long long
+strtoull(const char *__restrict, char **__restrict, int);
+#endif
 
 #ifdef __CX
 #include <sys/wait.h>
