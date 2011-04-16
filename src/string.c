@@ -45,6 +45,55 @@ static size_t __str_spn (const char *s1, const char *s2, __bool_t chk)
     return i;
 }
 
+static void* __memcpy_forward (void* __restrict s, const void* __restrict ct, size_t n)
+{
+    char* sc = (char*) s;
+    const char* ctc = (const char*) ct;
+    size_t i   = 0;
+
+    assert((n == 0) || (s  != NULL));
+    assert((n == 0) || (ct != NULL));
+
+    if (s == ct)
+    {
+        return s;
+    }
+
+    for (; i != n; ++i)
+    {
+        sc[i] = ctc[i];
+    }
+
+    return s;
+}
+
+static void* __memcpy_backward (void* __restrict s, const void* __restrict ct, size_t n)
+{
+    char* sc = (char*) s;
+    const char* ctc = (const char*) ct;
+    size_t i   = n;
+
+    assert((n == 0) || (s  != NULL));
+    assert((n == 0) || (ct != NULL));
+
+    if (s == ct)
+    {
+        return s;
+    }
+
+    if (n == 0)
+    {
+        return s;
+    }
+
+    while (i-- != 0)
+    {
+        sc[i] = ctc[i];
+    }
+
+    return s;
+}
+
 void* memchr (const void* cs, int c, size_t n)
 {
     const char* csc = (const char*) cs;
@@ -99,42 +148,19 @@ int memcmp (const void* cs, const void* ct, size_t n)
 
 void* memcpy (void* __restrict s, const void* __restrict ct, size_t n)
 {
-    char* sc = (char*) s;
-    const char* ctc = (const char*) ct;
-    size_t i   = 0;
-
-    assert((n == 0) || (s  != NULL));
-    assert((n == 0) || (ct != NULL));
-
-    if (s == ct)
-    {
-        return s;
-    }
-
-    for (; i != n; ++i)
-    {
-        sc[i] = ctc[i];
-    }
-
-    return s;
+    return __memcpy_forward(s, ct, n);
 }
 
-/* todo: fixme */
 void* memmove (void* s, const void* ct, size_t n)
 {
-    char* sc = (char*) s;
-    const char* ctc = (const char*) ct;
-    size_t i   = 0;
-
-    assert((n == 0) || (s  != NULL));
-    assert((n == 0) || (ct != NULL));
-
-    for (; i != n; ++i)
+    if (s < ct)
     {
-        sc[i] = ctc[i];
+        return __memcpy_forward(s, ct, n);
     }
-
-    return s;
+    else
+    {
+        return __memcpy_backward(s, ct, n);
+    }
 }
 
 void* memset (void* s, int c, size_t n)
