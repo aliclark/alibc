@@ -74,6 +74,11 @@ int memcmp (const void* cs, const void* ct, size_t n)
     assert((n == 0) || (cs != NULL));
     assert((n == 0) || (ct != NULL));
 
+    if (cs == ct)
+    {
+        return 0;
+    }
+
     for (; i != n; ++i)
     {
         sc = csc[i];
@@ -100,6 +105,11 @@ void* memcpy (void* __restrict s, const void* __restrict ct, size_t n)
 
     assert((n == 0) || (s  != NULL));
     assert((n == 0) || (ct != NULL));
+
+    if (s == ct)
+    {
+        return s;
+    }
 
     for (; i != n; ++i)
     {
@@ -185,6 +195,11 @@ int strcmp (const char* cs, const char* ct)
     assert(cs != NULL);
     assert(ct != NULL);
 
+    if (cs == ct)
+    {
+        return 0;
+    }
+
     do
     {
         sc = *cs++;
@@ -216,6 +231,11 @@ char* strcpy (char* __restrict s, const char* __restrict ct)
 
     assert(s  != NULL);
     assert(ct != NULL);
+
+    if (s == ct)
+    {
+        return s;
+    }
 
     do
     {
@@ -286,6 +306,11 @@ int strncmp (const char* cs, const char* ct, size_t n)
     assert((n == 0) || (cs != NULL));
     assert((n == 0) || (ct != NULL));
 
+    if (cs == ct)
+    {
+        return 0;
+    }
+
     for (; i != n; ++i)
     {
         sc = cs[i];
@@ -317,6 +342,11 @@ char* strncpy (char* __restrict s, const char* __restrict ct, size_t n)
 
     assert((n == 0) || (s  != NULL));
     assert((n == 0) || (ct != NULL));
+
+    if (s == ct)
+    {
+        return s;
+    }
 
     while (__true)
     {
