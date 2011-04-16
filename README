@@ -2,3 +2,23 @@
 A simple libc implementation for shits and giggles
 
 
+Build:
+
+1)
+Ensure "redo" is installed (found here: https://github.com/apenwarr/redo )
+
+2)
+$ redo bin/alibc
+
+
+Usage:
+
+1)
+See LICENSE file for terms of usage.
+
+2)
+To use the procedures with myprogram, type:
+$ LD_PRELOAD=libalibc.so.1 myprogram
+
+3)
+DO NOT export the LD_PRELOAD variable, since the library could cause any programs you run to crash immediately
