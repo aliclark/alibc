@@ -19,7 +19,7 @@ typedef int __bool_t;
 
 static size_t __str_spn (const char *s1, const char *s2, __bool_t chk)
 {
-    __bool_t table[CHAR_MAX] = { __false };
+    __bool_t table[CHAR_MAX + 1] = { __false };
     size_t i = 0;
     char c;
 
@@ -346,7 +346,7 @@ ret:
 /* very similar to strspn */
 char *strpbrk (const char* s1, const char* s2)
 {
-    __bool_t table[CHAR_MAX] = { __false };
+    __bool_t table[CHAR_MAX + 1] = { __false };
     size_t i = 0;
     char c, b;
 
