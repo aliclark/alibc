@@ -18,34 +18,6 @@ typedef int __bool_t;
 #define __true  1
 #endif
 
-static size_t __str_spn (const char *s1, const char *s2, __bool_t chk)
-{
-    __bool_t table[CHAR_MAX + 1] = { __false };
-    size_t i = 0;
-    char c;
-
-    assert(s1 != NULL);
-    assert(s2 != NULL);
-
-    while (__true)
-    {
-        c = *s2++;
-
-        if (c == '\0')
-        {
-            break;
-        }
-        table[(int) c] = __true;
-    }
-
-    while ((table[(int) s1[i]] == chk) && (s1[i] != '\0'))
-    {
-        ++i;
-    }
-
-    return i;
-}
-
 static void* __memcpy_forward (void* __restrict s, const void* __restrict ct, size_t n)
 {
     __byte_t* sc = (__byte_t*) s;
@@ -93,6 +65,34 @@ static void* __memcpy_backward (void* __restrict s, const void* __restrict ct, s
     }
 
     return s;
+}
+
+static size_t __str_spn (const char *s1, const char *s2, __bool_t chk)
+{
+    __bool_t table[CHAR_MAX + 1] = { __false };
+    size_t i = 0;
+    char c;
+
+    assert(s1 != NULL);
+    assert(s2 != NULL);
+
+    while (__true)
+    {
+        c = *s2++;
+
+        if (c == '\0')
+        {
+            break;
+        }
+        table[(int) c] = __true;
+    }
+
+    while ((table[(int) s1[i]] == chk) && (s1[i] != '\0'))
+    {
+        ++i;
+    }
+
+    return i;
 }
 
 void* memchr (const void* cs, int c, size_t n)
