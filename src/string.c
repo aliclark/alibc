@@ -5,7 +5,8 @@
 
 #define __UNUSED(x) ((void) n)
 
-typedef int __char_t;
+typedef char          __char_t;
+typedef unsigned char __byte_t;
 
 #ifdef __cplusplus
 typedef bool __bool_t;
@@ -47,8 +48,8 @@ static size_t __str_spn (const char *s1, const char *s2, __bool_t chk)
 
 static void* __memcpy_forward (void* __restrict s, const void* __restrict ct, size_t n)
 {
-    char* sc = (char*) s;
-    const char* ctc = (const char*) ct;
+    __byte_t* sc = (__byte_t*) s;
+    const __byte_t* ctc = (const __byte_t*) ct;
     size_t i   = 0;
 
     assert((n == 0) || (s  != NULL));
@@ -69,8 +70,8 @@ static void* __memcpy_forward (void* __restrict s, const void* __restrict ct, si
 
 static void* __memcpy_backward (void* __restrict s, const void* __restrict ct, size_t n)
 {
-    char* sc = (char*) s;
-    const char* ctc = (const char*) ct;
+    __byte_t* sc = (__byte_t*) s;
+    const __byte_t* ctc = (const __byte_t*) ct;
     size_t i   = n;
 
     assert((n == 0) || (s  != NULL));
@@ -96,14 +97,15 @@ static void* __memcpy_backward (void* __restrict s, const void* __restrict ct, s
 
 void* memchr (const void* cs, int c, size_t n)
 {
-    const char* csc = (const char*) cs;
+    const __byte_t* csc = (const __byte_t*) cs;
+    __byte_t ch = (__byte_t) c;
     size_t i = 0;
 
     assert((n == 0) || (cs != NULL));
 
     for (; i != n; ++i)
     {
-        if (csc[i] == c)
+        if (csc[i] == ch)
         {
             return (void*) (csc + i);
         }
@@ -114,9 +116,9 @@ void* memchr (const void* cs, int c, size_t n)
 
 int memcmp (const void* cs, const void* ct, size_t n)
 {
-    __char_t sc;
-    const char* csc = (const char*) cs;
-    const char* ctc = (const char*) ct;
+    const __byte_t* csc = (const __byte_t*) cs;
+    const __byte_t* ctc = (const __byte_t*) ct;
+    __byte_t sc;
     int diff;
     size_t i = 0;
 
@@ -165,14 +167,15 @@ void* memmove (void* s, const void* ct, size_t n)
 
 void* memset (void* s, int c, size_t n)
 {
-    char*  sc = (char*) s;
-    size_t i  = 0;
+    __byte_t* sc = (__byte_t*) s;
+    __byte_t ch = (__byte_t) c;
+    size_t i = 0;
 
     assert((n == 0) || (s != NULL));
 
     for (; i != n; ++i)
     {
-        sc[i] = c;
+        sc[i] = ch;
     }
 
     return s;
@@ -192,6 +195,7 @@ char* strchr (const char* cs, int c)
 {
     size_t i = 0;
     __char_t tmp;
+    char ch = (char) c;
 
     assert(cs != NULL);
 
@@ -199,7 +203,7 @@ char* strchr (const char* cs, int c)
     {
         tmp = cs[i];
 
-        if (tmp == c)
+        if (tmp == ch)
         {
             return (char*) cs + i;
         }
