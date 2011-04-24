@@ -9,10 +9,10 @@
     {                                                       \
         if (!(expression))                                  \
         {                                                   \
-            (void) fprintf(stderr,                          \
-                           "%s:%d: Assertion failed.\n",    \
-                           __FILE__,                        \
-                           __LINE__);                       \
+            (void) fputs(__FILE__, stderr);                 \
+            (void) fputc(':',      stderr);                 \
+            (void) fprintf(stderr, "%d", __LINE__);         \
+            (void) fputs(": Assertion failed.\n", stderr);  \
             abort();                                        \
         }                                                   \
     }                                                       \
