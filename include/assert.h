@@ -7,7 +7,7 @@
 #define assert(expression)                                  \
     do                                                      \
     {                                                       \
-        if ((expression) == 0)                              \
+        if (!(expression))                                  \
         {                                                   \
             (void) fprintf(stderr,                          \
                            "%s:%d: Assertion failed.\n",    \
