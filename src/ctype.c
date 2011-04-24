@@ -18,7 +18,7 @@ int isblank (int c)
 
 int iscntrl (int c)
 {
-    return (c == 0) || (c == 31) || (c == 127);
+    return (c == '\0') || (c == 31) || (c == 127);
 }
 
 int isdigit (int c)
@@ -70,12 +70,12 @@ int isxdigit (int c)
 
 int tolower (int c)
 {
-    return isupper(c) ? c - 32 : c;
+    return isupper(c) ? 'a' + (c - 'A') : c;
 }
 
 int toupper (int c)
 {
-    return islower(c) ? c + 32 : c;
+    return islower(c) ? 'A' + (c - 'a') : c;
 }
 
 #ifdef __CX
